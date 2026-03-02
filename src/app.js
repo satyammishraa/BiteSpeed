@@ -1,12 +1,19 @@
-const express = require("express");
+require("dotenv").config();
+const express=require("express");
+const app=express();
+const prisma=require("./config/prisma");
 const identifyRoute = require("./routes/identify.route");
 
-const app = express();
-const port = 3000;
-
 app.use(express.json());
-app.use("/identify", identifyRoute);
+app.use("/identify",identifyRoute);
 
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+const PORT=process.env.PORT || 5000;
+app.listen(PORT, async () => {
+  try {
+    await prisma.$connect();
+    console.log("Database connected successfully");
+    console.log(`Server running on port ${PORT}`);
+  } catch (error) {
+    console.error("Database connection failed", error);
+  }
 });
