@@ -1,7 +1,12 @@
-const express=require("express");
-const app = express();
-const port=3000;
+const express = require("express");
+const identifyRoute = require("./routes/identify");
 
-app.listen(3000,()=> {
-    console.log("Server running on port 3000");
+const app = express();
+const port = 3000;
+
+app.use(express.json());
+app.use("/identify", identifyRoute);
+
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });
