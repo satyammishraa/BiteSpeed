@@ -1,5 +1,5 @@
 const express = require("express");
-const identifyRoute = require("./routes/identify");
+const identifyRoute = require("./routes/identify.route");
 
 const app = express();
 const port = 3000;
