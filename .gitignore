@@ -25,3 +25,4 @@ build/
 
 # Coverage folder
 coverage/
+/src/generated/prisma
